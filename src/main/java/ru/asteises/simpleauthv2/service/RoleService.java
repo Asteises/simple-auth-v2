@@ -2,12 +2,14 @@ package ru.asteises.simpleauthv2.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.asteises.simpleauthv2.mapper.RoleMapper;
 import ru.asteises.simpleauthv2.model.dto.RoleDto;
 import ru.asteises.simpleauthv2.model.dto.RoleRegDto;
 import ru.asteises.simpleauthv2.model.entity.Role;
 import ru.asteises.simpleauthv2.repositories.RoleStorage;
 
 import javax.management.relation.RoleNotFoundException;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -34,9 +36,9 @@ public class RoleService {
         roleDto.setName(role.getName());
         return roleDto;
     }
-//
-//    public Object getAllRoles() {
-//        List<Role> roles = roleStorage.findAll();
-//
-//    }
+
+    public Object getAllRoles() {
+        List<Role> roles = roleStorage.findAll();
+        return RoleMapper.INSTANCE.map(roles);
+    }
 }

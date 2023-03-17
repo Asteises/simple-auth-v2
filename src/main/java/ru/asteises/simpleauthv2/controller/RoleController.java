@@ -1,7 +1,7 @@
 package ru.asteises.simpleauthv2.controller;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.asteises.simpleauthv2.model.dto.RoleDto;
@@ -9,7 +9,7 @@ import ru.asteises.simpleauthv2.model.dto.RoleRegDto;
 import ru.asteises.simpleauthv2.service.RoleService;
 
 import javax.management.relation.RoleNotFoundException;
-import java.util.List;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/role")
@@ -29,8 +29,8 @@ public class RoleController {
         return ResponseEntity.ok(roleService.getRoleById(roleId));
     }
 
-//    @GetMapping("/all")
-//    public ResponseEntity<List<RoleDto>> getAllRoles() {
-//        return ResponseEntity.ok(roleService.getAllRoles());
-//    }
+    @GetMapping("/all")
+    public ResponseEntity<Object> getAllRoles() {
+        return new  ResponseEntity(roleService.getAllRoles(), HttpStatus.OK);
+    }
 }
