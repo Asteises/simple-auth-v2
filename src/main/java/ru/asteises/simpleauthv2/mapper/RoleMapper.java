@@ -8,10 +8,10 @@ import ru.asteises.simpleauthv2.model.entity.Role;
 import java.util.List;
 
 @Mapper
-public abstract class RoleMapper {
+public interface RoleMapper {
 
-    public static final RoleMapper INSTANCE = Mappers.getMapper( RoleMapper.class);
+    RoleMapper INSTANCE = Mappers.getMapper( RoleMapper.class);
 
-    public abstract RoleDto map(Role role);
-    public abstract List<RoleDto> map(List<Role> roles);
+    RoleDto map(Role role);
+    List<RoleDto> map(List<Role> roles);
 }

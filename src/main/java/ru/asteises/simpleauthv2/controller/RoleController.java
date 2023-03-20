@@ -10,6 +10,7 @@ import ru.asteises.simpleauthv2.service.RoleService;
 
 import javax.management.relation.RoleNotFoundException;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/role")
@@ -30,7 +31,12 @@ public class RoleController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Object> getAllRoles() {
-        return new  ResponseEntity(roleService.getAllRoles(), HttpStatus.OK);
+    public ResponseEntity<?> getAllRoles() {
+        try {
+            return new ResponseEntity(roleService.getAllRoles(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 }
